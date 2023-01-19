@@ -69,6 +69,7 @@ T_1, T_2 =
 The fifth action adjusts the thrusts based on where the target is in the space and the angle of change that the drone will need to adjust to be directed at the target. If the target is to the left of the drone it will have a lower left thrust than right thrust and vice versa. 
 \\
 \begingroup\centering
+\\
 $T_1 = \max (1,\min (\frac{1}{2}+Ta+\Delta pitch,0))$
 $T_2 = \max (1,\min (\frac{1}{2}+Ta-\Delta pitch,0))$
 
@@ -80,7 +81,7 @@ The final action is used to adjust the drones y value. If the drones y value is 
 \\
 $T_1 =  \max (0,\min (sgn(\Delta y),1))$
 $T_2 =  \max (0,\min (sgn(\Delta y),1))$
-
+\\
 \endgroup
 
 \subsection{Rewards}
