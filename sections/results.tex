@@ -24,16 +24,21 @@ Each assessment was done with the following target coordinates.
 Each simulation was also run for 3000 simulation steps and 5000 epochs.
 
 In this simulation, the heuristic algorithm hit 5 targets and achieved a value for the sum of rewards as 4894.42, against our chosen reward function.
+
 The following graph shows an example of the Soft state Monti-Carlo state machine algorithm’s results, under the same conditions. \Cref{fig:fig1}.
 
-We modelled the cumulative reward function for any given epoch using the least-squares optimized log function. \Cref{fig:fig1}.
-
+We modelled the cumulative reward function for any given epoch using the least-squares optimized log function. \Cref{fig:fig1}. The implementation is not deterministic therefore an average of five simulations is used to reduce the error in our least squares exponential model.
+\\
 The Logarithmic line for best fit is defined by the following equation:
+
 \begingroup\centering
-$1475.01044ln(0.00310817391CumReward) + 1642.65857$
+$1475.01044*ln(0.00310817391CumuliveReward) + 1642.65857$
 \endgroup
 
 The model has a residual standard deviation of 711.29847146. 
+
+Figure 2 shows targets hit against cumulative rewards.
+
 \begin{figure}
     \centering
     \includegraphics[width=\singlefigure]{figures/figure_2.png}
