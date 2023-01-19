@@ -24,13 +24,6 @@ The actions seem to be in a random order, this is due to a bug in which having a
 \subsection{Rewards}
 We use the following reward function:
 
-% R = -3a + 0.1b - c + 2(d^3) +2000(isrewardhit)
-% Where 
-% a = dist
-% b = |drone.velocity_x| 
-% c =  25( ⌊ |drone.pitch| ⌋ )
-% d = targets hit
-
 $R=\frac{(-3a+0.1b-c+2d^3)}{100}$
 
 Where:

@@ -1,9 +1,0 @@
-\section{actions}
-There are 6 actions used within this program to define what movement the drone does.
-The first action is used to counteract the drones current pitch if it is facing the wrong direction from the target. 
-The second action follows the provided heuristic modified with a multiplier of 2 to the delta pitch variable ………
-The third action changes the thrust depending on the current pitch velocity of the drone. If the pitch velocity is in the direction of the target then the thrusts will more equal to slow down how much it spins, however if the pitch velocity is going in the opposite direction of the target then it strongly sets the thrusts to alter the pitch velocity to be towards the target, spinning it into the correct direction.
-The fourth action follows the provided heuristic.
-Action 5
-The final is to bo
-The actions seem to be in a random order, this is due to a bug in which having a certain section of code in the final action, it would increment the pitch of the drone object exponentially even though there was no part of the code that would change that variable.
