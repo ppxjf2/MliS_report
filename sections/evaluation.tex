@@ -1,19 +1,11 @@
 \section{Evaluation}
-Each assessment was done with the following target coordinates.
 
-\begin{table}[]
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-    \textbf{Target} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} \\ \hline
-    \textbf{x}      & 0.35       & -0.35      & 0.5        & -0.35      & 0.35       & -0.15      & -0.35      & 0.35       & -0.5       & 0.35        \\ \hline
-    \textbf{y}      & 0.3        & 0.4        & -0.4       & 0          & 0.4        & -0.1       & -0.3       & -0.4       & 0.4        & 0           \\ \hline
-    \end{tabular}
-\end{table}
+The implementation is not deterministic therefore an average of five simulations is used to reduce the error in our least squares exponential model. 
 
-Each simulation was also run for 3000 simulation steps.
+The best fit logarithmic model suggests that we would expect the simulation to overtake the heuristic model with its average simulation after 2596 epochs.
 
-In this simulation, the heuristic algorithm hit 5 targets and achieved a value for the sum of rewards as 4894.42, against our chosen reward function.
-The following graph shows an example of the Soft state Monti-Carlo state machine algorithm’s results, under the same conditions. This is not a deterministic algorithm and therefore there is some variance  between iterations.
-
-We modelled the results for the sum of the reward function for any given epoch through minimising the error with a log function.
+However, the model has a large Mean Squared Error due to only averaging over 5 simulations.
+The model has a residual standard deviation of 711.29847146, and we would therefore require the cumulative reward to be 7028 for the heuristic model's result to lie outside of 3 standard deviations.
+The model therefore suggests that after 12395 epochs we would expect any results worse than the heuristic algorithm to be anomalies.
+Due to our model only being trained to 5000 epochs, however, the model may struggle to be representative of the data at this point.
 
