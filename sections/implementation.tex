@@ -7,27 +7,69 @@ The states for this model uses the pitch of the drone, distance from the target 
 \subsection{Actions}
 There are 6 actions used within this program to define what movement the drone does.
 
+\begingroup\centering
+$Ta =  \frac{1}{10}\max (-1,\min (10\Delta y,1))$
+$Tp = \max (-\frac{3}{10},\min (\frac{4}{5}\Delta y,\frac{3}{10}))$
+
+\endgroup
+
+
 The first action is used to counteract the drones current pitch if it is facing the wrong direction from the target. 
+
+\begingroup\centering
+$T_1 = \frac{1}{2} - \frac{2}{5} \sin (pitchvelocity)$
+$T_2 = \frac{1}{2} + \frac{2}{5} \sin (pitchvelocity)$
+
+\endgroup
 
 The second action adjusts the thrusts based on where the target is in the space and the angle of change that the drone will need to adjust to be directed at the target multiplied by 2. If the target is to the left of the drone it will have a lower left thrust than right thrust and vice versa. 
 
-The third action gets the thrust based on the velocity of the drone's pitch to adjust which thrust it needs to be more to counteract the current rotation when it’s not rotating towards the target. This action is unstable compared to another action which does the same thing just at a slower rate.
+\begingroup\centering
+$a=\left \| Target Distance \right \|$
+
+\endgroup
+
+The third action gets the thrust based on the velocity of the drone's pitch to adjust which thrust it needs more power to counteract the current rotation when it’s not rotating towards the target. This action is unstable compared to another action which does the same thing just at a slower rate.
+
+\begingroup\centering
+$a=\left \| Target Distance \right \|$
+
+\endgroup
 
 The fourth action changes the thrust depending on the current pitch velocity of the drone. If the pitch velocity is in the direction of the target then the thrusts will more equal to slow down how much it spins, however if the pitch velocity is going in the opposite direction of the target then it strongly sets the thrusts to alter the pitch velocity to be towards the target, spinning it into the correct direction.
 
+\begingroup\centering
+$a=\left \| Target Distance \right \|$
+
+\endgroup
+
 The fifth action adjusts the thrusts based on where the target is in the space and the angle of change that the drone will need to adjust to be directed at the target. If the target is to the left of the drone it will have a lower left thrust than right thrust and vice versa. 
+
+\begingroup\centering
+$a=\left \| Target Distance \right \|$
+
+\endgroup
 
 The final action is used to adjust the drones y value. If the drones y value is lower than the target's y value then the drone will ascend and if the drones y value is above the target's y value then the drone will descend. 
 
-The actions seem to be in a random order, this is due to a bug in which having a certain section of code in the final action, it would increment the pitch of the drone object exponentially even though there was no part of the code that would change that variable.
+\begingroup\centering
+$T_1 =  \max (0,\min (\sin(\Delta y),1))$
+$T_2 =  \max (0,\min (\sin(\Delta y),1))$
+
+\endgroup
 
 \subsection{Rewards}
 We use the following reward function:
 
+\begingroup\centering
+
 $R=\frac{(-3a+0.1b-c+2d^3)}{100}$
+
+\endgroup
 
 Where:
 
+\begingroup\centering
 $a=\left \| Target Distance \right \|$
 
 $b=abs(Drone Velocity)$
@@ -36,3 +78,4 @@ $c= \left \lfloor abs(DronePitch)  \right \rfloor $
 
 $d=1+TargetsHit$
 
+\endgroup
