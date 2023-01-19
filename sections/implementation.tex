@@ -3,13 +3,12 @@ For the implementation for this project we used a Soft policy Monti Carlo algori
 
 \subsection{States}
 The states for this model uses the pitch of the drone, distance from the target both x and y, and velocity. All these values are scaled to be integers within certain bounds and rounded down to fit within a grid which is used for action selection.  
-
+The state space is 4 dimentional of size 20 x 40 x 30 x 10. 
 \subsection{Actions}
 There are 6 actions used within this program to define what movement the drone does.
 
 \begingroup\centering
 $Ta =  \frac{1}{10}\max (-1,\min (10\Delta y,1))$
-$Tp = \max (-\frac{3}{10},\min (\frac{4}{5}\Delta y,\frac{3}{10}))$
 
 \endgroup
 
@@ -17,22 +16,32 @@ $Tp = \max (-\frac{3}{10},\min (\frac{4}{5}\Delta y,\frac{3}{10}))$
 The first action is used to counteract the drones current pitch if it is facing the wrong direction from the target. 
 
 \begingroup\centering
-$T_1 = \frac{1}{2} - \frac{2}{5} \sin (pitchvelocity)$
-$T_2 = \frac{1}{2} + \frac{2}{5} \sin (pitchvelocity)$
+$\left\{\begin{matrix}
+    T_1 = \frac{1}{2} & \sin(\Delta x) = \sin(\Theta ))
+    & \\
+    T_2 = \frac{1}{2}
+    \\ \\
+    T_1 = \max (1,\min (\frac{\sin (\Delta x)}{2}+1),0)) & \sin(\Delta x) \neq \sin(\Theta ))
+    & \\
+    T_2 = \max (1,\min (-(\frac{\sin (\Delta x)}{2}+1)),0))
+    \end{matrix}\right.$
 
 \endgroup
 
 The second action adjusts the thrusts based on where the target is in the space and the angle of change that the drone will need to adjust to be directed at the target multiplied by 2. If the target is to the left of the drone it will have a lower left thrust than right thrust and vice versa. 
 
 \begingroup\centering
-$a=\left \| Target Distance \right \|$
+$T_1 = \max (1,\min (\frac{2}{5}+Ta+2\Delta pitch,0))$
+$T_2 = \max (1,\min (\frac{2}{5}+Ta-2\Delta pitch,0))$
 
 \endgroup
 
 The third action gets the thrust based on the velocity of the drone's pitch to adjust which thrust it needs more power to counteract the current rotation when it’s not rotating towards the target. This action is unstable compared to another action which does the same thing just at a slower rate.
 
 \begingroup\centering
-$a=\left \| Target Distance \right \|$
+
+$T_1 = \frac{1}{2} - \frac{2}{5} \sin (pitchvelocity)$
+$T_2 = \frac{1}{2} + \frac{2}{5} \sin (pitchvelocity)$
 
 \endgroup
 
@@ -46,7 +55,8 @@ $a=\left \| Target Distance \right \|$
 The fifth action adjusts the thrusts based on where the target is in the space and the angle of change that the drone will need to adjust to be directed at the target. If the target is to the left of the drone it will have a lower left thrust than right thrust and vice versa. 
 
 \begingroup\centering
-$a=\left \| Target Distance \right \|$
+$T_1 = \max (1,\min (\frac{1}{2}+Ta+\Delta pitch,0))$
+$T_2 = \max (1,\min (\frac{1}{2}+Ta-\Delta pitch,0))$
 
 \endgroup
 
